@@ -8,6 +8,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 
+
 class QuestType extends GraphQLType
 {
 
@@ -16,6 +17,7 @@ class QuestType extends GraphQLType
         'description' => 'Collection of quest with their respective category',
         'model' => Quest::class
     ];
+
 
     public function fields() :array
     {

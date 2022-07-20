@@ -14,7 +14,7 @@ class CategoriesQuery extends Query
 
     public function type(): GraphQLType
     {
-        return Type::listOf(GraphQL::type('categories'));
+        return GraphQLType::listOf(GraphQL::type('Category'));
     }
 
     public function resolve($root, $args)

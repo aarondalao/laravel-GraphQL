@@ -1,21 +1,22 @@
 <?php
 
-namespace App\GraphQL\Queries\Quest;
+namespace App\GraphQL\Mutations\Category;
 
-use App\Models\Quest;
-use Rebing\GraphQL\Support\Query;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\Type as GraphQLType;
+use Rebing\GraphQL\Support\Mutation;
+use App\Models\Category;
 
-class QuestQuery extends Query
+
+class DeleteCategoryMutation extends Mutation
 {
     protected $attributes = [
-        'name' => 'quest',
+        'name' => 'deleteCategory',
+        'description' => 'deletes a category',
     ];
 
     public function type(): GraphQLType
     {
-        return GraphQL::type('Quest');
+        return GraphQLType::boolean();
     }
 
     public function args(): array
@@ -31,6 +32,9 @@ class QuestQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Quest::findOrFail($args['id']);
+
+        $category = Category::findOrFail($args['id']);
+
+        return $category->delete() ? true : false;
     }
 }
